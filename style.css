@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    /* Літній градієнт: від теплого жовтого до персикового */
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 18px; /* Трохи збільшили базовий шрифт */
+}
+
+.app-container {
+    background: rgba(255, 255, 255, 0.95); /* Світле матове скло */
+    padding: 50px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 850px; /* Збільшили ширину вікна */
+    box-shadow: 0 15px 35px rgba(253, 160, 133, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    font-size: 36px; /* Збільшили заголовки */
+    margin-bottom: 15px;
+    color: #ff6b6b; /* Яскравий кораловий колір */
+    text-align: center;
+    font-weight: 800;
+}
+
+p {
+    font-size: 18px;
+    color: #576574;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Поля вводу */
+input, select {
+    width: 100%;
+    padding: 16px 20px;
+    background: #f8f9fa;
+    border: 2px solid #e1e8ed;
+    border-radius: 12px;
+    color: #2f3542;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #ff6b6b;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.2);
+}
+
+/* Кнопки */
+button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.3s, box-shadow 0.3s;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.btn-primary, button {
+    background: #ff6b6b;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.btn-primary:hover, button:hover {
+    background: #ff4757;
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #ff6b6b;
+    border: 2px solid #ff6b6b;
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.teacher-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 15px;
+    color: #8395a7;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.teacher-link:hover {
+    color: #ff6b6b;
+}
+
+/* Структура форми 2-2-1 */
+.form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.row-1 {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+/* СТИЛІ ДЛЯ ЗАВДАНЬ УЧНЯ */
+.task-item {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    border-left: 6px solid #00a8ff; /* Океанський синій для нових завдань */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.task-item input[type="checkbox"] {
+    width: 26px; /* Більша галочка */
+    height: 26px;
+    margin-right: 20px;
+    cursor: pointer;
+    accent-color: #1dd1a1; /* Зелений колір самої галочки */
+}
+
+.task-info {
+    flex-grow: 1;
+}
+
+.task-title {
+    font-size: 20px; /* Більший текст завдань */
+    font-weight: bold;
+    color: #2f3542;
+    transition: color 0.3s ease;
+}
+
+.task-meta {
+    font-size: 15px;
+    color: #a4b0be;
+    margin-top: 6px;
+}
+
+/* СТИЛЬ ВИКОНАНОГО ЗАВДАННЯ (ЯСКРАВО-ЗЕЛЕНИЙ) */
+.task-item.completed {
+    border-left-color: #1dd1a1; /* Літній зелений */
+    background: #f1fcf8; /* Легкий зеленуватий фон */
+    box-shadow: 0 4px 15px rgba(29, 209, 161, 0.15);
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;
+    color: #1dd1a1;
+}
+
+.mt-20 { margin-top: 25px; }
+
+/* Дошка вчителя */
+.student-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f2f6;
+}
+
+.student-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00a8ff; /* Синій колір для імен учнів */
+    margin-bottom: 15px;
+}
+
+.student-card ul {
+    list-style: none;
+    color: #576574;
+    font-size: 16px;
+    margin-left: 10px;
+    line-height: 1.8;
+}
+
+/* Додаткові відступи */
+.mb-15 { margin-bottom: 15px; }
+
+/* Стилі для деталей завдання */
+.task-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.task-details-btn {
+    background: transparent;
+    border: none;
+    color: #a4b0be;
+    font-size: 14px;
+    padding: 5px;
+    margin-top: 5px;
+    box-shadow: none;
+    width: auto;
+    text-decoration: underline;
+}
+
+.task-details-btn:hover {
+    color: #00a8ff;
+    background: transparent;
+    box-shadow: none;
+}
+
+.task-expanded-content {
+    display: none;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #e1e8ed;
+    color: #576574;
+    font-size: 16px;
+    width: 100%;
+}
+
+.task-expanded-content.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
