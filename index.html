@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Трекер планів на липень</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- ЕКРАН 1: Авторизація учня -->
+        <div id="screen-login" class="screen active">
+            <h2>Трекер планів</h2>
+            <p>Введи свої дані та код групи від вчителя</p>
+            
+            <input type="text" id="class-code" placeholder="Код групи (наприклад: LOGIKA26)" class="mb-15">
+            <input type="text" id="username" placeholder="Твоє ім'я (наприклад: Софія)" class="mb-15">
+            <input type="password" id="user-password" placeholder="Придумай пароль" class="mb-15">
+            
+            <button onclick="login()">Увійти</button>
+            <div class="teacher-link" onclick="showTeacherLogin()">Вхід для вчителя</div>
+        </div>
+
+        <!-- ЕКРАН ВЧИТЕЛЯ: Авторизація -->
+        <div id="screen-teacher-login" class="screen">
+            <h2>Панель вчителя</h2>
+            <p>Введіть код групи та пароль вчителя</p>
+            
+            <input type="text" id="teacher-class-code" placeholder="Код вашої групи (наприклад: LOGIKA26)" class="mb-15">
+            <input type="password" id="teacher-password" placeholder="Пароль вчителя" class="mb-15">
+            
+            <button class="btn-primary" onclick="verifyTeacher()">Увійти до групи</button>
+            <button class="btn-secondary" onclick="showScreen('screen-login')">Повернутися</button>
+        </div>
+
+        <!-- ЕКРАН 2: Форма додавання планів -->
+        <div id="screen-add-plans" class="screen">
+            <h2 id="welcome-text"></h2>
+            <p>Додай свої цілі на липень</p>
+            
+            <div class="form-layout">
+                <div class="row-2">
+                    <input type="text" id="plan-title" placeholder="Що плануєш зробити?">
+                    <select id="plan-category">
+                        <option value="Навчання">Навчання</option>
+                        <option value="Відпочинок">Відпочинок</option>
+                        <option value="Спорт">Спорт</option>
+                    </select>
+                </div>
+                <div class="row-2">
+                    <input type="date" id="plan-start" title="Дата початку">
+                    <input type="date" id="plan-end" title="Дедлайн">
+                </div>
+                <div class="row-1">
+                    <input type="text" id="plan-notes" placeholder="Додаткові нотатки (необов'язково)">
+                </div>
+                <button class="btn-primary" onclick="addPlan()">Зберегти завдання</button>
+            </div>
+            
+            <button class="btn-secondary" onclick="showStudentBoard()">Перейти до моєї дошки</button>
+        </div>
+
+        <!-- ЕКРАН 3: Дошка учня -->
+        <div id="screen-student-board" class="screen">
+            <h2 id="board-title">Мої завдання</h2>
+            <div id="student-tasks-container" class="tasks-list"></div>
+            <button class="btn-primary mt-20" onclick="showScreen('screen-add-plans')">Додати ще завдання</button>
+            <button class="btn-secondary mt-20" onclick="logout()">Вийти з акаунта</button>
+        </div>
+
+        <!-- ЕКРАН 4: Дошка вчителя -->
+        <div id="screen-teacher-board" class="screen">
+            <h2 id="teacher-board-title">Успішність групи</h2>
+            <div id="teacher-overview" class="teacher-grid"></div>
+            <button class="btn-secondary mt-20" onclick="logout()">Вийти з панелі вчителя</button>
+        </div>
+
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
